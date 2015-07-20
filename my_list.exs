@@ -13,4 +13,10 @@ defmodule MyList do
 	defp _mapsum([], total, func), do: total
 	defp _mapsum([ head | tail ], total, func), do: _mapsum(tail, func.(head) + total, func)
 
+
+	def max([head | tail]), do: _max(tail, head)
+	defp _max([], max), do: max
+	defp _max([head | tail], max) when head > max, do: _max(tail, head) 
+	defp _max([head | tail], max) when head <= max, do: _max(tail, max) 
+	
 end
