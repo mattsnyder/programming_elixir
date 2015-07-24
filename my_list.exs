@@ -24,4 +24,8 @@ defmodule MyList do
 	defp _morph(letter, inc) when [(letter + inc)] > 'z', do: _morph(letter - 26, inc)
 	defp _morph(letter, inc), do: [letter + inc]
 
+  def span(from,to) when from == to, do: [to]
+	def span(from,to) when from < to do
+    [from] ++ span(from+1,to)
+  end
 end
