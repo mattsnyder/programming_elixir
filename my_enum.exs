@@ -6,4 +6,8 @@ defmodule MyEnum do
 	defp _all?(_, false, _), do: false
 	defp _all?([], true, _), do: true
 	
+	def each([], _), do: []
+	def each([ head | tail], func), do: _each(tail, [func.(head)], func)
+	defp _each([ head | tail ], memo, func), do: _each(tail, memo ++ [func.(head)], func)
+	defp _each([], memo, func), do: memo
 end
