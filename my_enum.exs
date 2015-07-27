@@ -17,4 +17,10 @@ defmodule MyEnum do
   defp _filter([ head | tail], filtered, func), do: _filter(tail, _append_if(head, filtered, func.(head)), func)
 	defp _append_if(item, list, true), do: list ++ [item]
   defp _append_if(_, list, false), do: list
+
+  def flatten([]), do: []
+	def flatten(list), do: _flatten(list, [])
+  defp _flatten([], flattened), do: flattened
+  defp _flatten([ head | tail ], flattened) when is_list(head), do: _flatten(tail, flattened ++ flatten(head))
+	defp _flatten([ head | tail ], flattened), do: _flatten(tail, flattened ++ [head])
 end
